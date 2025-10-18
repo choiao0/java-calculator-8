@@ -4,10 +4,10 @@ import calculator.view.InputView;
 import calculator.view.OutputView;
 
 public class CalculatorController {
-    public void run() {
-        InputView inputView = new InputView();
-        OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
 
+    public void run() {
         outputView.printInputMessage();
         String inputString = inputView.getInput();
 
