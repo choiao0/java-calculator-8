@@ -2,10 +2,12 @@ package calculator.controller;
 
 import calculator.view.InputView;
 import calculator.view.OutputView;
+import calculator.model.Delimiter;
 
 public class CalculatorController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final Delimiter delimiter = new Delimiter();
 
     public void run() {
         outputView.printInputMessage();
@@ -13,6 +15,8 @@ public class CalculatorController {
 
         if (containsCustomDelimiter(inputString)) {
             validateCustomDelimiter(inputString);
+            delimiter.addDelimiter(inputString.substring(2, 3));
+            inputString = inputString.substring(5);
         }
     }
 
