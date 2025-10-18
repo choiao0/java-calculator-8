@@ -12,18 +12,18 @@ public class CalculatorController {
         String inputString = inputView.getInput();
 
         if (containsCustomDelimiter(inputString)) {
-
+            validateCustomDelimiter(inputString);
         }
     }
 
     private boolean containsCustomDelimiter(String string) {
-        if (string.contains("//") && string.contains("\\n")) {
-            String pattern = string.substring(0, 5);
-            if (!pattern.startsWith("//") || !pattern.endsWith("\\n")) {
-                throw new IllegalArgumentException("잘못된 커스텀 구분자 지정 형식입니다.");
-            }
-            return true;
+        return (string.contains("//") && string.contains("\\n"));
+    }
+
+    private void validateCustomDelimiter(String string) {
+        String pattern = string.substring(0, 5);
+        if (!pattern.startsWith("//") || !pattern.endsWith("\\n")) {
+            throw new IllegalArgumentException("잘못된 커스텀 구분자 지정 형식입니다.");
         }
-        return false;
     }
 }
