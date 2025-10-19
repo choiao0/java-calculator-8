@@ -20,6 +20,9 @@ public class CalculatorController {
         }
 
         String[] splitString = splitByDelimiter(inputString, delimiter.getDelimiterRegex());
+        for (String number : splitString) {
+            validateNumber(number);
+        }
     }
 
     private boolean containsCustomDelimiter(String string) {
@@ -35,5 +38,11 @@ public class CalculatorController {
 
     private String[] splitByDelimiter(String string, String delimiter) {
         return string.split(delimiter, -1);
+    }
+
+    private void validateNumber(String string) {
+        if (!string.matches("[1-9]*")) {
+            throw new IllegalArgumentException("유효하지 않은 숫자입니다.");
+        }
     }
 }
