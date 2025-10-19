@@ -3,33 +3,38 @@ package calculator.controller;
 import calculator.view.InputView;
 import calculator.view.OutputView;
 import calculator.model.Delimiter;
+import calculator.model.Delimiters;
 import calculator.model.Number;
 import calculator.model.Numbers;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class CalculatorController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    private final Delimiter delimiter = new Delimiter();
 
     public void run() {
         outputView.printInputMessage();
         String inputString = inputView.getInput();
 
+        Delimiters delimiters = new Delimiters(createDefaultDelimiters());
         if (containsCustomDelimiter(inputString)) {
             validateCustomDelimiter(inputString);
-            delimiter.addDelimiter(inputString.substring(2, 3));
+            char customDelimiter = inputString.charAt(2);
+            delimiters.addDelimiter(new Delimiter(customDelimiter));
             inputString = inputString.substring(5);
         }
 
-        String[] splitString = splitByDelimiter(inputString, delimiter.getDelimiterRegex());
+        String[] splitString = splitByDelimiter(inputString, delimiters.getDelimitersRegex());
         Numbers numbers = new Numbers(createNumbers(splitString));
 
         int sum = numbers.calculateSum();
         outputView.printResult(sum);
+    }
+
+    private List<Delimiter> createDefaultDelimiters() {
+        return List.of(new Delimiter(','), new Delimiter(':'));
     }
 
     private boolean containsCustomDelimiter(String string) {

@@ -3,17 +3,13 @@ package calculator.model;
 import java.util.regex.Pattern;
 
 public class Delimiter {
-    private String delimiterRegex;
+    private final char delimiter;
 
-    public Delimiter() {
-        this.delimiterRegex = ",|:";
+    public Delimiter(char delimiter) {
+        this.delimiter = delimiter;
     }
 
-    public void addDelimiter(String delimiter) {
-        delimiterRegex += "|" + Pattern.quote(delimiter);
-    }
-
-    public String getDelimiterRegex() {
-        return delimiterRegex;
+    public String getDelimiter() {
+        return Pattern.quote(String.valueOf(delimiter));
     }
 }
