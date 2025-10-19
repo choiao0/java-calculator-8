@@ -2,6 +2,7 @@ package calculator.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Delimiters {
     private final List<Delimiter> delimiters;
@@ -15,10 +16,8 @@ public class Delimiters {
     }
 
     public String getDelimitersRegex() {
-        String regex = "";
-        for (Delimiter delimiter : delimiters) {
-            regex += (delimiter.getDelimiter() + "|");
-        }
-        return regex.substring(0, regex.length() - 1);
+        return delimiters.stream()
+                .map(Delimiter::getDelimiter)
+                .collect(Collectors.joining("|"));
     }
 }
