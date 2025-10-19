@@ -7,6 +7,7 @@ import calculator.model.Number;
 import calculator.model.Numbers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CalculatorController {
@@ -47,10 +48,8 @@ public class CalculatorController {
     }
 
     private List<Number> createNumbers(String[] splitString) {
-        List<Number> numbers = new ArrayList<>();
-        for (String number : splitString) {
-            numbers.add(new Number(number));
-        }
-        return numbers;
+        return Arrays.stream(splitString)
+                .map(Number::new)
+                .toList();
     }
 }
