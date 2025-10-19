@@ -4,6 +4,7 @@ import calculator.view.InputView;
 import calculator.view.OutputView;
 import calculator.model.Delimiter;
 import calculator.model.Number;
+import calculator.model.Numbers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,6 @@ public class CalculatorController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final Delimiter delimiter = new Delimiter();
-    private final List<Number> numbers = new ArrayList<>();
 
     public void run() {
         outputView.printInputMessage();
@@ -25,11 +25,9 @@ public class CalculatorController {
         }
 
         String[] splitString = splitByDelimiter(inputString, delimiter.getDelimiterRegex());
-        for (String number : splitString) {
-            numbers.add(new Number(number));
-        }
+        Numbers numbers = new Numbers(createNumbers(splitString));
 
-        int sum = calculateSum(numbers);
+        int sum = numbers.calculateSum();
         outputView.printResult(sum);
     }
 
@@ -48,11 +46,11 @@ public class CalculatorController {
         return string.split(delimiter, -1);
     }
 
-    private int calculateSum(List<Number> numbers) {
-        int sum = 0;
-        for (Number number : numbers) {
-            sum += number.getNumber();
+    private List<Number> createNumbers(String[] splitString) {
+        List<Number> numbers = new ArrayList<>();
+        for (String number : splitString) {
+            numbers.add(new Number(number));
         }
-        return sum;
+        return numbers;
     }
 }
