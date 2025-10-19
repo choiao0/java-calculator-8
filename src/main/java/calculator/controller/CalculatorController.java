@@ -3,6 +3,10 @@ package calculator.controller;
 import calculator.view.InputView;
 import calculator.view.OutputView;
 import calculator.model.Delimiter;
+import calculator.model.Number;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CalculatorController {
     private final InputView inputView = new InputView();
@@ -20,8 +24,14 @@ public class CalculatorController {
         }
 
         String[] splitString = splitByDelimiter(inputString, delimiter.getDelimiterRegex());
+        List<Number> numbers = new ArrayList<>();
         for (String number : splitString) {
             validateNumber(number);
+            if (number.isEmpty()) {
+                numbers.add(new Number(0));
+            } else {
+                numbers.add(new Number(Integer.parseInt(number)));
+            }
         }
     }
 
