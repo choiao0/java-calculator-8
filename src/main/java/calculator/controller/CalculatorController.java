@@ -18,6 +18,8 @@ public class CalculatorController {
             delimiter.addDelimiter(inputString.substring(2, 3));
             inputString = inputString.substring(5);
         }
+
+        String[] splitString = split(inputString, delimiter.getDelimiterRegex());
     }
 
     private boolean containsCustomDelimiter(String string) {
@@ -29,5 +31,9 @@ public class CalculatorController {
         if (!pattern.startsWith("//") || !pattern.endsWith("\\n")) {
             throw new IllegalArgumentException("잘못된 커스텀 구분자 지정 형식입니다.");
         }
+    }
+
+    private String[] split(String string, String delimiter) {
+        return string.split(delimiter);
     }
 }

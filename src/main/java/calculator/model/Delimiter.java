@@ -12,4 +12,8 @@ public class Delimiter {
     public void addDelimiter(String delimiter) {
         delimiterRegex += "|" + Pattern.quote(delimiter);
     }
+
+    public String getDelimiterRegex() {
+        return delimiterRegex;
+    }
 }
