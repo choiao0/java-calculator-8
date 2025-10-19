@@ -26,7 +26,8 @@ public class CalculatorController {
             inputString = inputString.substring(5);
         }
 
-        String[] splitString = splitByDelimiter(inputString, delimiters.getDelimitersRegex());
+        String delimitersRegex = delimiters.getDelimitersRegex();
+        String[] splitString = splitByDelimiter(inputString, delimitersRegex);
         Numbers numbers = new Numbers(createNumbers(splitString));
 
         int sum = numbers.calculateSum();
