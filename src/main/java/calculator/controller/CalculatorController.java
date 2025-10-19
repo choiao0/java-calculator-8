@@ -12,6 +12,7 @@ public class CalculatorController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
     private final Delimiter delimiter = new Delimiter();
+    private final List<Number> numbers = new ArrayList<>();
 
     public void run() {
         outputView.printInputMessage();
@@ -24,7 +25,6 @@ public class CalculatorController {
         }
 
         String[] splitString = splitByDelimiter(inputString, delimiter.getDelimiterRegex());
-        List<Number> numbers = new ArrayList<>();
         for (String number : splitString) {
             validateNumber(number);
             if (number.isEmpty()) {
@@ -33,6 +33,9 @@ public class CalculatorController {
                 numbers.add(new Number(Integer.parseInt(number)));
             }
         }
+
+        int sum = calculateSum(numbers);
+        outputView.printResult(sum);
     }
 
     private boolean containsCustomDelimiter(String string) {
@@ -54,5 +57,13 @@ public class CalculatorController {
         if (!string.matches("[1-9]*")) {
             throw new IllegalArgumentException("유효하지 않은 숫자입니다.");
         }
+    }
+
+    private int calculateSum(List<Number> numbers) {
+        int sum = 0;
+        for (Number number : numbers) {
+            sum += number.getNumber();
+        }
+        return sum;
     }
 }
