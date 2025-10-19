@@ -21,7 +21,7 @@ public class CalculatorController {
         Delimiters delimiters = new Delimiters(createDefaultDelimiters());
         if (containsCustomDelimiter(inputString)) {
             validateCustomDelimiter(inputString);
-            char customDelimiter = inputString.charAt(2);
+            String customDelimiter = inputString.substring(2, 3);
             delimiters.addDelimiter(new Delimiter(customDelimiter));
             inputString = inputString.substring(5);
         }
@@ -35,7 +35,7 @@ public class CalculatorController {
     }
 
     private List<Delimiter> createDefaultDelimiters() {
-        return List.of(new Delimiter(','), new Delimiter(':'));
+        return List.of(new Delimiter(","), new Delimiter(":"));
     }
 
     private boolean containsCustomDelimiter(String string) {
