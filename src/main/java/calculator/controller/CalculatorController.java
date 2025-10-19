@@ -19,7 +19,7 @@ public class CalculatorController {
             inputString = inputString.substring(5);
         }
 
-        String[] splitString = split(inputString, delimiter.getDelimiterRegex());
+        String[] splitString = splitByDelimiter(inputString, delimiter.getDelimiterRegex());
     }
 
     private boolean containsCustomDelimiter(String string) {
@@ -33,7 +33,7 @@ public class CalculatorController {
         }
     }
 
-    private String[] split(String string, String delimiter) {
-        return string.split(delimiter);
+    private String[] splitByDelimiter(String string, String delimiter) {
+        return string.split(delimiter, -1);
     }
 }
