@@ -26,12 +26,7 @@ public class CalculatorController {
 
         String[] splitString = splitByDelimiter(inputString, delimiter.getDelimiterRegex());
         for (String number : splitString) {
-            validateNumber(number);
-            if (number.isEmpty()) {
-                numbers.add(new Number(0));
-            } else {
-                numbers.add(new Number(Integer.parseInt(number)));
-            }
+            numbers.add(new Number(number));
         }
 
         int sum = calculateSum(numbers);
@@ -51,12 +46,6 @@ public class CalculatorController {
 
     private String[] splitByDelimiter(String string, String delimiter) {
         return string.split(delimiter, -1);
-    }
-
-    private void validateNumber(String string) {
-        if (!string.matches("[1-9]*")) {
-            throw new IllegalArgumentException("유효하지 않은 숫자입니다.");
-        }
     }
 
     private int calculateSum(List<Number> numbers) {
