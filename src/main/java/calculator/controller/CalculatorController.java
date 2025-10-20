@@ -53,7 +53,7 @@ public class CalculatorController {
     }
 
     private void validateCustomDelimiter(String string) {
-        String pattern = string.substring(0, 5);
+        String pattern = string.substring(0, CONTENT_START_INDEX);
         if (!pattern.startsWith(DELIMITER_SETTING_START) || !pattern.endsWith(DELIMITER_SETTING_END)) {
             throw new IllegalArgumentException("잘못된 커스텀 구분자 지정 형식입니다.");
         }
