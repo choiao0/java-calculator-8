@@ -38,4 +38,21 @@
     - 테스트 코드 예제를 참고하였다. 구분자로 분리되어 있지 않아도 숫자가 있다면 반환한다.
 - [ ]  기본 구분자와 커스텀 구분자는 함께 사용할 수 있다.
     - 커스텀 구분자를 지정하면 기본 구분자는 사용할 수 없게 하는 것이 어색하다고 생각하여 허용하였다.
-- [ ] 커스텀 구분자는 여러 개 설정할 수 있다. (예: `//;\n//*\n1;2*3`) 
+- [ ] 커스텀 구분자는 여러 개 설정할 수 있다. (예: `//;\n//*\n1;2*3`)
+
+### 📦 패키지 구조
+```
+java
+└─ calculator
+   ├─ Application.java
+   ├─ controller
+   │  └─ CalculatorController.java
+   ├─ model
+   │  ├─ Delimiter.java
+   │  ├─ Delimiters.java
+   │  ├─ Number.java
+   │  └─ Numbers.java
+   └─ view
+      ├─ InputView.java
+      └─ OutputView.java
+```
