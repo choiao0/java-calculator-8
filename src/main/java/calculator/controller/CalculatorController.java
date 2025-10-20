@@ -19,7 +19,7 @@ public class CalculatorController {
         String inputString = inputView.getInput();
 
         Delimiters delimiters = new Delimiters(createDefaultDelimiters());
-        if (containsCustomDelimiter(inputString)) {
+        while (containsCustomDelimiter(inputString)) {
             validateCustomDelimiter(inputString);
             String customDelimiter = inputString.substring(2, 3);
             delimiters.addDelimiter(new Delimiter(customDelimiter));
@@ -39,7 +39,7 @@ public class CalculatorController {
     }
 
     private boolean containsCustomDelimiter(String string) {
-        return (string.contains("//") && string.contains("\\n"));
+        return (string.contains("//") || string.contains("\\n"));
     }
 
     private void validateCustomDelimiter(String string) {
